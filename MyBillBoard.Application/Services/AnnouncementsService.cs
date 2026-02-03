@@ -1,0 +1,35 @@
+﻿using MyBillBoard.Application.Interfaces;
+using MyBillBoard.Domain.Entities;
+
+namespace MyBillBoard.Application.Services
+{
+    public class AnnouncementsService : IAnnouncementsService
+    {
+        private readonly IAnnouncementsRepository _announcementsRepository;
+
+        public AnnouncementsService(IAnnouncementsRepository announcementsRepository)
+        {
+            _announcementsRepository = announcementsRepository;
+        }
+
+        public async Task<List<Announcement>> GetAllAnnouncementsAsync()
+        {
+            return await _announcementsRepository.GetAllAnnouncementsAsync();
+        }
+
+        public async Task<Guid> CreateAnnouncementAsync(Announcement announcement)
+        {
+            return await _announcementsRepository.CreateAnnouncementAsync(announcement);
+        }
+
+        public async Task<Guid> UpdateAnnouncementAsync(Guid id, string title, string description, bool status)
+        {
+            return await _announcementsRepository.UpdateAnnouncementAsync(id, title, description, status);
+        }
+
+        public async Task<Guid> DeleteAnnouncementAsync(Guid id)
+        {
+            return await _announcementsRepository.DeleteAnnouncementAsync(id);
+        }
+    }
+}

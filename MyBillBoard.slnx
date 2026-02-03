@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="MyBillBoard.Api/MyBillBoard.Api.csproj" />
+  <Project Path="MyBillBoard.Application/MyBillBoard.Application.csproj" />
+  <Project Path="MyBillBoard.Domain/MyBillBoard.Domain.csproj" />
+  <Project Path="MyBillBoard.Infrastructure/MyBillBoard.Infrastructure.csproj" />
+</Solution>

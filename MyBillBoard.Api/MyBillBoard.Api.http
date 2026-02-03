@@ -1,0 +1,6 @@
+@MyBillBoard.Api_HostAddress = http://localhost:5108
+
+GET {{MyBillBoard.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
