@@ -49,8 +49,8 @@ namespace MyBillBoard.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Title = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreatedAtUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAtUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Status = table.Column<bool>(type: "boolean", nullable: false),
                     CategoryId = table.Column<Guid>(type: "uuid", nullable: false),
                     SubCategoryId = table.Column<Guid>(type: "uuid", nullable: false)

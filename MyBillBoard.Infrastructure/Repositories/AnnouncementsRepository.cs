@@ -24,8 +24,8 @@ namespace MyBillBoard.Infrastructure.Repositories
                     a.Id,
                     a.Title,
                     a.Description,
-                    a.CreatedAt,
-                    a.UpdatedAt,
+                    a.CreatedAtUtc,
+                    a.UpdatedAtUtc,
                     a.Status ? "Active" : "Inactive",
                     a.Category.Title + " / " + a.SubCategory.Title))
                 .ToListAsync();
@@ -37,8 +37,8 @@ namespace MyBillBoard.Infrastructure.Repositories
             {
                 Title = announcement.Title,
                 Description = announcement.Description,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
+                CreatedAtUtc = DateTime.UtcNow,
+                UpdatedAtUtc = DateTime.UtcNow,
                 CategoryId = announcement.CategoryId,
                 SubCategoryId = announcement.SubCategoryId
 
@@ -50,18 +50,18 @@ namespace MyBillBoard.Infrastructure.Repositories
             return announcementEntity.Id;
         }
 
-        public async Task<Guid> UpdateAnnouncementAsync(Guid id, string title, string description, bool status)
+        public async Task<Guid> UpdateAnnouncementAsync(UpdateAnnouncementRequest request)
         {
             await _context.Announcements
-                .Where(a => a.Id == id)
+                .Where(a => a.Id == request.Id)
                 .ExecuteUpdateAsync(a => a
-                    .SetProperty(a => a.Title, title)
-                    .SetProperty(a => a.Description, description)
-                    .SetProperty(a => a.Status, status)
-                    .SetProperty(a => a.UpdatedAt, DateTime.UtcNow)
+                    .SetProperty(a => a.Title, request.Title)
+                    .SetProperty(a => a.Description, request.Description)
+                    .SetProperty(a => a.Status, request.Status)
+                    .SetProperty(a => a.UpdatedAtUtc, DateTime.UtcNow)
                 );
 
-            return id;
+            return request.Id;
         }
 
         public async Task<Guid> DeleteAnnouncementAsync(Guid id)

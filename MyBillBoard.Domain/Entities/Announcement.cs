@@ -8,9 +8,9 @@ namespace MyBillBoard.Domain.Entities
 
         public string Description { get; set; } = string.Empty;
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAtUtc { get; set; }
 
-        public DateTime UpdatedAt { get; set; }
+        public DateTime UpdatedAtUtc { get; set; }
 
         public bool Status { get; set; } = true;
 

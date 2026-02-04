@@ -8,6 +8,6 @@ namespace MyBillBoard.Application.Interfaces
         Task<Guid> CreateAnnouncementAsync(CreateAnnouncementRequest announcement);
         Task<Guid> DeleteAnnouncementAsync(Guid id);
         Task<List<AnnouncementDto>> GetAllAnnouncementsAsync();
-        Task<Guid> UpdateAnnouncementAsync(Guid id, string title, string description, bool status);
+        Task<Guid> UpdateAnnouncementAsync(UpdateAnnouncementRequest request);
     }
 }

@@ -8,8 +8,8 @@ namespace MyBillBoard.Application.Features.Announcements.Dtos
         Guid Id,
         string Title,
         string Description,
-        DateTime CreatedAt,
-        DateTime UpdatedAt,
+        DateTime CreatedAtUtc,
+        DateTime UpdatedAtUtc,
         string Status,
         string CategorySubCategoryTitle);
 }

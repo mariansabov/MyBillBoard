@@ -34,5 +34,16 @@ namespace MyBillBoard.Api.Controllers
 
             return Ok(announcementId);
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Guid>> Update(Guid id, [FromBody] UpdateAnnouncementRequest request)
+        {
+            if (id != request.Id)
+            {
+                return BadRequest("ID in URL does not match ID in request body.");
+            }
+            var announcementId = await _announcementsService.UpdateAnnouncementAsync(request);
+            return Ok(announcementId);
+        }
     }
 }
