@@ -64,6 +64,17 @@ namespace MyBillBoard.Infrastructure.Repositories
             return id;
         }
 
+        public async Task<Guid> ChangeStatusAsync(Guid id, bool status)
+        {
+            await _context.Announcements
+                .Where(a => a.Id == id)
+                .ExecuteUpdateAsync(a => a
+                    .SetProperty(a => a.Status, status)
+                    .SetProperty(a => a.UpdatedAtUtc, DateTime.UtcNow)
+                );
+            return id;
+        }
+
         public async Task<Guid> DeleteAnnouncementAsync(Guid id)
         {
             await _context.Announcements

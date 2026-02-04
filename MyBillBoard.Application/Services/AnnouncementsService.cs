@@ -28,6 +28,11 @@ namespace MyBillBoard.Application.Services
             return await _announcementsRepository.UpdateAnnouncementAsync(id, request);
         }
 
+        public async Task<Guid> ChangeStatusAsync(Guid id, bool status)
+        {
+            return await _announcementsRepository.ChangeStatusAsync(id, status);
+        }
+
         public async Task<Guid> DeleteAnnouncementAsync(Guid id)
         {
             return await _announcementsRepository.DeleteAnnouncementAsync(id);

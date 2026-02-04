@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.StaticAssets.Infrastructure;
 using MyBillBoard.Application.Features.Announcements.Dtos;
 using MyBillBoard.Application.Interfaces;
-using MyBillBoard.Application.Services;
-using MyBillBoard.Domain.Entities;
-
 
 namespace MyBillBoard.Api.Controllers
 {
@@ -39,6 +35,13 @@ namespace MyBillBoard.Api.Controllers
         public async Task<ActionResult<Guid>> Update(Guid id, [FromBody] UpdateAnnouncementRequest request)
         {
             var announcementId = await _announcementsService.UpdateAnnouncementAsync(id, request);
+            return Ok(announcementId);
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<Guid>> ChangeStatus(Guid id, [FromQuery] bool status)
+        {
+            var announcementId = await _announcementsService.ChangeStatusAsync(id, status);
             return Ok(announcementId);
         }
 
