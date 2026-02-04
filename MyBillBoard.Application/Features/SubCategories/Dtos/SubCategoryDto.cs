@@ -4,5 +4,12 @@
         Guid Id,
         string Title,
         string CategoryTitle,
-        Guid CategoryId);
+        Guid CategoryId,
+        List<AnnouncementSubCategoryDto> Announcements);
+
+    public record AnnouncementSubCategoryDto(
+        Guid Id,
+        string Title,
+        string Description,
+        string Status);
 }

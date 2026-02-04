@@ -518,6 +518,28 @@
         },
         "additionalProperties": false
       },
+      "AnnouncementSubCategoryDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Category": {
         "type": "object",
         "properties": {
@@ -666,6 +688,13 @@
           "categoryId": {
             "type": "string",
             "format": "uuid"
+          },
+          "announcements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AnnouncementSubCategoryDto"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MyBillBoard.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fd9bc03277fd1da4035467133560fd10d3857ef0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0516036a482f65daf9713dad9ef6540649da8b06")]
 [assembly: System.Reflection.AssemblyProductAttribute("MyBillBoard.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MyBillBoard.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

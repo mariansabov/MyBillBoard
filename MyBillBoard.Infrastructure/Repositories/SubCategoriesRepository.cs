@@ -22,7 +22,17 @@ namespace MyBillBoard.Infrastructure.Repositories
         {
             return await _context.SubCategories
                 .AsNoTracking()
-                .Select(sc => new SubCategoryDto(sc.Id, sc.Title, sc.Category.Title, sc.CategoryId))
+                .Select(sc => new SubCategoryDto(
+                    sc.Id, 
+                    sc.Title, 
+                    sc.Category.Title, 
+                    sc.CategoryId,
+                    sc.Announcements
+                        .Select(a => new AnnouncementSubCategoryDto(
+                            a.Id, 
+                            a.Title, 
+                            a.Description,
+                            a.Status ? "Active" : "Inactive")).ToList()))
                 .ToListAsync();
         }
 
