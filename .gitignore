@@ -1,1 +1,9 @@
 .vs/
+MyBillBoard.Api/bin/
+MyBillBoard.Api/obj/
+MyBillBoard.Application/bin/
+MyBillBoard.Application/obj/
+MyBillBoard.Domain/bin/
+MyBillBoard.Domain/obj/
+MyBillBoard.Infrastructure/bin/
+MyBillBoard.Infrastructure/obj/

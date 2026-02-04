@@ -45,5 +45,12 @@ namespace MyBillBoard.Api.Controllers
             var announcementId = await _announcementsService.UpdateAnnouncementAsync(request);
             return Ok(announcementId);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Guid>> Delete(Guid id)
+        {
+            var announcementId = await _announcementsService.DeleteAnnouncementAsync(id);
+            return Ok(announcementId);
+        }
     }
 }
