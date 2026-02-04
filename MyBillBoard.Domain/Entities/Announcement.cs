@@ -12,7 +12,7 @@ namespace MyBillBoard.Domain.Entities
 
         public DateTime UpdatedAt { get; set; }
 
-        public bool Status { get; set; }
+        public bool Status { get; set; } = true;
 
         public Guid CategoryId { get; set; }
         public Category Category { get; set; } = null!;

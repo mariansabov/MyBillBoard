@@ -15,3 +15,4 @@ C:\Users\Yomu\source\repos\MyBillBoard\MyBillBoard.Infrastructure\obj\Debug\net1
 C:\Users\Yomu\source\repos\MyBillBoard\MyBillBoard.Infrastructure\obj\Debug\net10.0\refint\MyBillBoard.Infrastructure.dll
 C:\Users\Yomu\source\repos\MyBillBoard\MyBillBoard.Infrastructure\obj\Debug\net10.0\MyBillBoard.Infrastructure.pdb
 C:\Users\Yomu\source\repos\MyBillBoard\MyBillBoard.Infrastructure\obj\Debug\net10.0\ref\MyBillBoard.Infrastructure.dll
+C:\Users\Yomu\source\repos\MyBillBoard\MyBillBoard.Infrastructure\obj\Debug\net10.0\MyBillBoard.Infrastructure.sourcelink.json

@@ -136,3 +136,4 @@ C:\Users\Yomu\source\repos\MyBillBoard\MyBillBoard.Api\bin\Debug\net10.0\Microso
 C:\Users\Yomu\source\repos\MyBillBoard\MyBillBoard.Api\bin\Debug\net10.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\Yomu\source\repos\MyBillBoard\MyBillBoard.Api\bin\Debug\net10.0\Microsoft.IdentityModel.Logging.dll
 C:\Users\Yomu\source\repos\MyBillBoard\MyBillBoard.Api\bin\Debug\net10.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Yomu\source\repos\MyBillBoard\MyBillBoard.Api\obj\Debug\net10.0\MyBillBoard.Api.sourcelink.json

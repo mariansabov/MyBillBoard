@@ -50,17 +50,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Announcement"
+                "$ref": "#/components/schemas/CreateAnnouncementRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Announcement"
+                "$ref": "#/components/schemas/CreateAnnouncementRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Announcement"
+                "$ref": "#/components/schemas/CreateAnnouncementRequest"
               }
             }
           }
@@ -570,6 +570,28 @@
           "title": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateAnnouncementRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "subCategoryId": {
+            "type": "string",
+            "format": "uuid"
           }
         },
         "additionalProperties": false

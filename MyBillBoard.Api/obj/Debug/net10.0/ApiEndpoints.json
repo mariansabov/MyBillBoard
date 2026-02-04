@@ -29,7 +29,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "MyBillBoard.Domain.Entities.Announcement",
+        "Type": "MyBillBoard.Application.Features.Announcements.Dtos.CreateAnnouncementRequest",
         "IsRequired": true
       }
     ],

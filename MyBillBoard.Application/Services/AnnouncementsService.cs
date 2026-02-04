@@ -1,4 +1,5 @@
-﻿using MyBillBoard.Application.Interfaces;
+﻿using MyBillBoard.Application.Features.Announcements.Dtos;
+using MyBillBoard.Application.Interfaces;
 using MyBillBoard.Domain.Entities;
 
 namespace MyBillBoard.Application.Services
@@ -12,12 +13,12 @@ namespace MyBillBoard.Application.Services
             _announcementsRepository = announcementsRepository;
         }
 
-        public async Task<List<Announcement>> GetAllAnnouncementsAsync()
+        public async Task<List<AnnouncementDto>> GetAllAnnouncementsAsync()
         {
             return await _announcementsRepository.GetAllAnnouncementsAsync();
         }
 
-        public async Task<Guid> CreateAnnouncementAsync(Announcement announcement)
+        public async Task<Guid> CreateAnnouncementAsync(CreateAnnouncementRequest announcement)
         {
             return await _announcementsRepository.CreateAnnouncementAsync(announcement);
         }

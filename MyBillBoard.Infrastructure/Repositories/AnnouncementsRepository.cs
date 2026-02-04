@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyBillBoard.Application.Features.Announcements.Dtos;
 using MyBillBoard.Application.Interfaces;
 using MyBillBoard.Domain.Entities;
 using MyBillBoard.Infrastructure.Persistence;
@@ -14,15 +15,23 @@ namespace MyBillBoard.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<List<Announcement>> GetAllAnnouncementsAsync()
+        public async Task<List<AnnouncementDto>> GetAllAnnouncementsAsync()
         {
+
             return await _context.Announcements
-                .Include(a => a.Category)
-                .Include(a => a.SubCategory)
+                .AsNoTracking()
+                .Select(a => new AnnouncementDto(
+                    a.Id,
+                    a.Title,
+                    a.Description,
+                    a.CreatedAt,
+                    a.UpdatedAt,
+                    a.Status ? "Active" : "Inactive",
+                    a.Category.Title + " / " + a.SubCategory.Title))
                 .ToListAsync();
         }
 
-        public async Task<Guid> CreateAnnouncementAsync(Announcement announcement)
+        public async Task<Guid> CreateAnnouncementAsync(CreateAnnouncementRequest announcement)
         {
             var announcementEntity = new Announcement
             {
@@ -30,7 +39,6 @@ namespace MyBillBoard.Infrastructure.Repositories
                 Description = announcement.Description,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
-                Status = announcement.Status,
                 CategoryId = announcement.CategoryId,
                 SubCategoryId = announcement.SubCategoryId
 

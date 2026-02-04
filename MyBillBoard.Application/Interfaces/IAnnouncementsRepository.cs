@@ -1,12 +1,13 @@
-﻿using MyBillBoard.Domain.Entities;
+﻿using MyBillBoard.Application.Features.Announcements.Dtos;
+using MyBillBoard.Domain.Entities;
 
 namespace MyBillBoard.Application.Interfaces
 {
     public interface IAnnouncementsRepository
     {
-        Task<Guid> CreateAnnouncementAsync(Announcement announcement);
+        Task<Guid> CreateAnnouncementAsync(CreateAnnouncementRequest announcement);
         Task<Guid> DeleteAnnouncementAsync(Guid id);
-        Task<List<Announcement>> GetAllAnnouncementsAsync();
+        Task<List<AnnouncementDto>> GetAllAnnouncementsAsync();
         Task<Guid> UpdateAnnouncementAsync(Guid id, string title, string description, bool status);
     }
 }

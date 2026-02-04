@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticAssets.Infrastructure;
-
+using MyBillBoard.Application.Features.Announcements.Dtos;
 using MyBillBoard.Application.Interfaces;
 using MyBillBoard.Application.Services;
 using MyBillBoard.Domain.Entities;
@@ -28,18 +28,9 @@ namespace MyBillBoard.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Guid>> Create([FromBody] Announcement request)
+        public async Task<ActionResult<Guid>> Create([FromBody] CreateAnnouncementRequest request)
         {
-            var announcement = new Announcement
-            {
-                Title = request.Title,
-                Description = request.Description,
-                Status = request.Status,
-                CategoryId = request.CategoryId,
-                SubCategoryId = request.SubCategoryId
-            };
-
-            var announcementId = await _announcementsService.CreateAnnouncementAsync(announcement);
+            var announcementId = await _announcementsService.CreateAnnouncementAsync(request);
 
             return Ok(announcementId);
         }
