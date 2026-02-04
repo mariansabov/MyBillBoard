@@ -4,7 +4,7 @@ using MyBillBoard.Application.Features.Announcements.Dtos;
 using MyBillBoard.Application.Interfaces;
 using MyBillBoard.Application.Services;
 using MyBillBoard.Domain.Entities;
-using MyBillBoard.Infrastructure.Repositories;
+
 
 namespace MyBillBoard.Api.Controllers
 {
@@ -20,7 +20,7 @@ namespace MyBillBoard.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Announcement>>> GetAll()
+        public async Task<ActionResult<List<AnnouncementDto>>> GetAll()
         {
             var announcements = await _announcementsService.GetAllAnnouncementsAsync();
 
