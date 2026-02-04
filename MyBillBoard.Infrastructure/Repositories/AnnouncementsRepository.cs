@@ -50,10 +50,10 @@ namespace MyBillBoard.Infrastructure.Repositories
             return announcementEntity.Id;
         }
 
-        public async Task<Guid> UpdateAnnouncementAsync(UpdateAnnouncementRequest request)
+        public async Task<Guid> UpdateAnnouncementAsync(Guid id, UpdateAnnouncementRequest request)
         {
             await _context.Announcements
-                .Where(a => a.Id == request.Id)
+                .Where(a => a.Id == id)
                 .ExecuteUpdateAsync(a => a
                     .SetProperty(a => a.Title, request.Title)
                     .SetProperty(a => a.Description, request.Description)
@@ -61,7 +61,7 @@ namespace MyBillBoard.Infrastructure.Repositories
                     .SetProperty(a => a.UpdatedAtUtc, DateTime.UtcNow)
                 );
 
-            return request.Id;
+            return id;
         }
 
         public async Task<Guid> DeleteAnnouncementAsync(Guid id)

@@ -23,9 +23,9 @@ namespace MyBillBoard.Application.Services
             return await _announcementsRepository.CreateAnnouncementAsync(announcement);
         }
 
-        public async Task<Guid> UpdateAnnouncementAsync(UpdateAnnouncementRequest request)
+        public async Task<Guid> UpdateAnnouncementAsync(Guid id, UpdateAnnouncementRequest request)
         {
-            return await _announcementsRepository.UpdateAnnouncementAsync(request);
+            return await _announcementsRepository.UpdateAnnouncementAsync(id, request);
         }
 
         public async Task<Guid> DeleteAnnouncementAsync(Guid id)
