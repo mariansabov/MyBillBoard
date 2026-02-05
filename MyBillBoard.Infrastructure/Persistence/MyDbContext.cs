@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyBillBoard.Application.Interfaces;
 using MyBillBoard.Domain.Entities;
 using MyBillBoard.Infrastructure.Configurations;
 using System.Runtime.CompilerServices;
 
 namespace MyBillBoard.Infrastructure.Persistence
 {
-    public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(options)
+    public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(options), IMyDbContext
     {
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -20,7 +21,7 @@ namespace MyBillBoard.Infrastructure.Persistence
             );
 
             base.OnModelCreating(modelBuilder);
-        }  
+        }
 
         public void Seed()
         {
