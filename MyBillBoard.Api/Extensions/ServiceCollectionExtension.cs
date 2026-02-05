@@ -6,11 +6,13 @@ namespace MyBillBoard.Api.Extensions
 {
     public static class ServiceCollectionExtension
     {
-        public static void AddDatabase(this IServiceCollection services)
+        public static void AddDatabase(
+            this IServiceCollection services,
+            IConfiguration configuration)
         {
             services.AddDbContext<MyDbContext>(options =>
                 {
-                    options.UseNpgsql("DefaultConnection");
+                    options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
                 });
         }
     }
