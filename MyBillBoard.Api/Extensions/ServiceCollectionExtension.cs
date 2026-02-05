@@ -10,7 +10,7 @@ namespace MyBillBoard.Api.Extensions
         {
             services.AddDbContext<MyDbContext>(options =>
                 {
-                    options.UseNpgsql("Host=localhost;Database=MyBillBoardDb;Username=postgres;Password=1234pg");
+                    options.UseNpgsql("DefaultConnection");
                 });
         }
     }
