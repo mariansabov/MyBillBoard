@@ -9,6 +9,7 @@ namespace MyBillBoard.Application.Interfaces
         Task<Guid> CreateAnnouncementAsync(CreateAnnouncementRequest announcement);
         Task<Guid> DeleteAnnouncementAsync(Guid id);
         Task<List<AnnouncementDto>> GetAllAnnouncementsAsync();
+        Task<AnnouncementDto> GetAnnouncementByIdAsync(Guid id);
         Task<Guid> UpdateAnnouncementAsync(Guid id, UpdateAnnouncementRequest request);
     }
 }

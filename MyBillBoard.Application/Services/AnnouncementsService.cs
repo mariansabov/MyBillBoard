@@ -18,6 +18,11 @@ namespace MyBillBoard.Application.Services
             return await _announcementsRepository.GetAllAnnouncementsAsync();
         }
 
+        public async Task<AnnouncementDto> GetAnnouncementByIdAsync(Guid id)
+        {
+            return await _announcementsRepository.GetAnnouncementByIdAsync(id);
+        }
+
         public async Task<Guid> CreateAnnouncementAsync(CreateAnnouncementRequest announcement)
         {
             return await _announcementsRepository.CreateAnnouncementAsync(announcement);

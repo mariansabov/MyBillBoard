@@ -17,7 +17,6 @@ namespace MyBillBoard.Infrastructure.Repositories
 
         public async Task<List<AnnouncementDto>> GetAllAnnouncementsAsync()
         {
-
             return await _context.Announcements
                 .AsNoTracking()
                 .Select(a => new AnnouncementDto(
@@ -29,6 +28,29 @@ namespace MyBillBoard.Infrastructure.Repositories
                     a.Status ? "Active" : "Inactive",
                     a.Category.Title + " / " + a.SubCategory.Title))
                 .ToListAsync();
+        }
+
+        public async Task<AnnouncementDto> GetAnnouncementByIdAsync(Guid id)
+        {
+            var announcement = await _context.Announcements
+                .AsNoTracking()
+                .Where(a => a.Id == id)
+                .Select(a => new AnnouncementDto(
+                    a.Id,
+                    a.Title,
+                    a.Description,
+                    a.CreatedAtUtc,
+                    a.UpdatedAtUtc,
+                    a.Status ? "Active" : "Inactive",
+                    a.Category.Title + " / " + a.SubCategory.Title))
+                .FirstOrDefaultAsync();
+
+            if (announcement == null)
+            {
+                throw new KeyNotFoundException($"Announcement with ID {id} not found.");
+            }
+
+            return announcement;
         }
 
         public async Task<Guid> CreateAnnouncementAsync(CreateAnnouncementRequest announcement)
@@ -72,6 +94,7 @@ namespace MyBillBoard.Infrastructure.Repositories
                     .SetProperty(a => a.Status, status)
                     .SetProperty(a => a.UpdatedAtUtc, DateTime.UtcNow)
                 );
+
             return id;
         }
 
