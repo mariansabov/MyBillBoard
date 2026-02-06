@@ -7,6 +7,7 @@ using MyBillBoard.Application.Services;
 using MyBillBoard.Infrastructure.Persistence;
 using MyBillBoard.Infrastructure.Repositories;
 using MyBillBoard.Application.Common.Behaviors;
+using MyBillBoard.Application.Features.Categories.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,12 +25,10 @@ builder.Services.AddControllers();
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(MyBillBoard.Application.Features.Categories.CreateCategoryCommand).Assembly));
 
-
 // ------------------------
 // FluentValidation
 // ------------------------
-builder.Services.AddValidatorsFromAssembly(typeof(MyBillBoard.Application.Features.Categories.CreateCategoryValidator).Assembly);
-
+builder.Services.AddValidatorsFromAssembly(typeof(CreateCategoryValidator).Assembly);
 
 // ------------------------
 // Pipeline Behavior

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyBillBoard.Application.Features.Categories
+namespace MyBillBoard.Application.Features.Categories.Validators
 {
     public class CreateCategoryValidator : AbstractValidator<CreateCategoryCommand>
     {
