@@ -1,7 +1,7 @@
 ﻿using MyBillBoard.Application.Features.Categories.Dtos;
 using MyBillBoard.Domain.Entities;
 
-namespace MyBillBoard.Application.Interfaces
+namespace MyBillBoard.Application.Common.Interfaces
 {
     public interface ICategoriesRepository
     {

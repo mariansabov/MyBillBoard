@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MyBillBoard.Application.Common.Interfaces;
 using MyBillBoard.Infrastructure.Persistence;
 
 namespace MyBillBoard.Api.Extensions
@@ -14,6 +15,8 @@ namespace MyBillBoard.Api.Extensions
                 {
                     options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
                 });
+
+            services.AddScoped<IMyDbContext>(provider => provider.GetRequiredService<MyDbContext>());
         }
     }
 }

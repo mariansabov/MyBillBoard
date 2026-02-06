@@ -1,9 +1,9 @@
 ﻿using MyBillBoard.Application.Features.Announcements.Dtos;
 using MyBillBoard.Domain.Entities;
 
-namespace MyBillBoard.Application.Interfaces
+namespace MyBillBoard.Application.Common.Interfaces
 {
-    public interface IAnnouncementsService
+    public interface IAnnouncementsRepository
     {
         Task<Guid> ChangeStatusAsync(Guid id, bool status);
         Task<Guid> CreateAnnouncementAsync(CreateAnnouncementRequest announcement);

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyBillBoard.Application.Common.Interfaces;
 using MyBillBoard.Application.Features.SubCategories.Dtos;
-using MyBillBoard.Application.Interfaces;
 using MyBillBoard.Domain.Entities;
 
 namespace MyBillBoard.Api.Controllers

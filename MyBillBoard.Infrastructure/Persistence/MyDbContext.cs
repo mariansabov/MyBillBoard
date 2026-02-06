@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyBillBoard.Application.Interfaces;
+using MyBillBoard.Application.Common.Interfaces;
 using MyBillBoard.Domain.Entities;
 using MyBillBoard.Infrastructure.Configurations;
 using System.Runtime.CompilerServices;

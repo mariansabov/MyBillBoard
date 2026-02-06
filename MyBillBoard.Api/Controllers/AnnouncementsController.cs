@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyBillBoard.Application.Common.Interfaces;
 using MyBillBoard.Application.Features.Announcements.Dtos;
-using MyBillBoard.Application.Interfaces;
 
 namespace MyBillBoard.Api.Controllers
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyBillBoard.Application.Common.Interfaces;
 using MyBillBoard.Application.Features.Categories.Dtos;
-using MyBillBoard.Application.Interfaces;
 using MyBillBoard.Domain.Entities;
 using MyBillBoard.Infrastructure.Persistence;
 using System;

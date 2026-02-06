@@ -1,5 +1,5 @@
-﻿using MyBillBoard.Application.Features.Announcements.Dtos;
-using MyBillBoard.Application.Interfaces;
+﻿using MyBillBoard.Application.Common.Interfaces;
+using MyBillBoard.Application.Features.Announcements.Dtos;
 using MyBillBoard.Domain.Entities;
 
 namespace MyBillBoard.Application.Services

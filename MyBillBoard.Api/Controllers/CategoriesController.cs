@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MediatR;
+using MyBillBoard.Application.Common.Interfaces;
+using MyBillBoard.Application.Features.Categories;
 using MyBillBoard.Application.Features.Categories.Dtos;
-using MyBillBoard.Application.Interfaces;
 using MyBillBoard.Domain.Entities;
+using System.Runtime.CompilerServices;
 
 namespace MyBillBoard.Api.Controllers
 {
@@ -9,11 +12,15 @@ namespace MyBillBoard.Api.Controllers
     [Route("api/[controller]")]
     public class CategoriesController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
         private readonly ICategoriesRepository _categoriesRepository;
 
-        public CategoriesController(ICategoriesRepository categoriesRepository)
+        public CategoriesController(IMediator mediator, ICategoriesRepository categoriesRepository)
         {
             _categoriesRepository = categoriesRepository;
+
+            _mediator = mediator;
         }
 
         [HttpGet]
@@ -24,9 +31,9 @@ namespace MyBillBoard.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Guid>> Create([FromBody] CreateCategoryRequest category)
+        public async Task<ActionResult<Guid>> Create([FromBody] CreateCategoryCommand command)
         {
-            var categoryId = await _categoriesRepository.CreateCategoryAsync(category);
+            var categoryId = await _mediator.Send(command);
             return Ok(categoryId);
         }
 
