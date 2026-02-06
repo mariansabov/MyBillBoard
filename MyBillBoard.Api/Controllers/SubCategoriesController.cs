@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MyBillBoard.Application.Common.Interfaces;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using MyBillBoard.Application.Features.SubCategories;
 using MyBillBoard.Application.Features.SubCategories.Dtos;
-using MyBillBoard.Domain.Entities;
 
 namespace MyBillBoard.Api.Controllers
 {
@@ -9,39 +9,44 @@ namespace MyBillBoard.Api.Controllers
     [Route("api/[controller]")]
     public class SubCategoriesController : ControllerBase
     {
-        private readonly ISubCategoriesRepository _subCategoriesRepository;
+        private readonly IMediator _mediator;
 
-        public SubCategoriesController(ISubCategoriesRepository subCategoriesRepository)
+        public SubCategoriesController(IMediator mediator)
         {
-            _subCategoriesRepository = subCategoriesRepository;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<SubCategoryDto>>> GetAll()
         {
-            var subCategories = await _subCategoriesRepository.GetAllSubCategoriesAsync();
+            var subCategories = await _mediator.Send(new GetSubCategoriesQuery());
             return Ok(subCategories);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Guid>> Create([FromBody] CreateSubCategoryRequest subCategory)
+        public async Task<ActionResult<Guid>> Create([FromBody] CreateSubCategoryCommand command)
         {
-            var subCategoryId = await _subCategoriesRepository.CreateSubCategoryAsync(subCategory);
+            var subCategoryId = await _mediator.Send(command);
             return Ok(subCategoryId);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Guid>> Update(Guid id, [FromBody] SubCategory subCategory)
+        public async Task<ActionResult<Guid>> Update(Guid id, [FromBody] UpdateSubCategoryCommand command)
         {
-            var subCategoryId = await _subCategoriesRepository.UpdateSubCategoryAsync(id, subCategory.Title);
+            if (id != command.Id)
+            {
+                return BadRequest("ID mismatch");
+            }
+
+            var subCategoryId = await _mediator.Send(command);
             return Ok(subCategoryId);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<Guid>> Delete(Guid id)
         {
-            var subCategoryId = await _subCategoriesRepository.DeleteSubCategoryAsync(id);
-            return Ok(subCategoryId);
+            var deletedId = await _mediator.Send(new DeleteSubCategoryCommand(id));
+            return Ok(deletedId);
         }
     }
 }

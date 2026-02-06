@@ -15,8 +15,4 @@
     <ProjectReference Include="..\MyBillBoard.Application\MyBillBoard.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Options\" />
-  </ItemGroup>
-
 </Project>
