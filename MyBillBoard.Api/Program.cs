@@ -44,8 +44,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IAnnouncementsService, AnnouncementsService>();
 builder.Services.AddScoped<IAnnouncementsRepository, AnnouncementsRepository>();
 
-builder.Services.AddScoped<ICategoriesRepository, CategoriesRepository>();
-
 builder.Services.AddScoped<ISubCategoriesRepository, SubCategoriesRepository>();
 
 var app = builder.Build();
