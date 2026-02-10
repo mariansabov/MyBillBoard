@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using MyBillBoard.Application.Common.Interfaces;
+using MyBillBoard.Application.Features.Announcements;
 using MyBillBoard.Application.Features.Announcements.Dtos;
 
 namespace MyBillBoard.Api.Controllers
@@ -8,52 +10,50 @@ namespace MyBillBoard.Api.Controllers
     [Route("api/[controller]")]
     public class AnnouncementsController : ControllerBase
     {
-        private readonly IAnnouncementsService _announcementsService;
+        private readonly IMediator _mediator;
 
-        public AnnouncementsController(IAnnouncementsService announcementsService)
+        public AnnouncementsController(IMediator mediator)
         {
-            _announcementsService = announcementsService;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<AnnouncementDto>>> GetAll()
         {
-            var announcements = await _announcementsService.GetAllAnnouncementsAsync();
+            var announcements = await _mediator.Send(new GetAnnouncementsQuery());
             return Ok(announcements);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<AnnouncementDto>> GetById(Guid id)
         {
-            var announcement = await _announcementsService.GetAnnouncementByIdAsync(id);
+            var announcement = await _mediator.Send(new GetAnnouncementByIdQuery(id));
             return Ok(announcement);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Guid>> Create([FromBody] CreateAnnouncementRequest request)
+        public async Task<ActionResult<Guid>> Create([FromBody] CreateAnnouncementCommand command)
         {
-            var announcementId = await _announcementsService.CreateAnnouncementAsync(request);
+            var announcementId = await _mediator.Send(command);
             return Ok(announcementId);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Guid>> Update(Guid id, [FromBody] UpdateAnnouncementRequest request)
+        public async Task<ActionResult<Guid>> Update(Guid id, [FromBody] UpdateAnnouncementCommand command)
         {
-            var announcementId = await _announcementsService.UpdateAnnouncementAsync(id, request);
-            return Ok(announcementId);
-        }
+            if (id != command.Id)
+            {
+                return BadRequest("ID mismatch");
+            }
 
-        [HttpPatch("{id}")]
-        public async Task<ActionResult<Guid>> ChangeStatus(Guid id, [FromQuery] bool status)
-        {
-            var announcementId = await _announcementsService.ChangeStatusAsync(id, status);
+            var announcementId = await _mediator.Send(command);
             return Ok(announcementId);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<Guid>> Delete(Guid id)
         {
-            var announcementId = await _announcementsService.DeleteAnnouncementAsync(id);
+            var announcementId = await _mediator.Send(new DeleteAnnouncementCommand(id));
             return Ok(announcementId);
         }
     }

@@ -26,7 +26,7 @@ namespace MyBillBoard.Application.Features.Categories
                 Title = request.Title
             };
 
-            await _context.Categories.AddAsync(categoryEntity);
+            await _context.Categories.AddAsync(categoryEntity, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
 
             return categoryEntity.Id;

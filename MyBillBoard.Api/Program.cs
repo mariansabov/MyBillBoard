@@ -2,10 +2,7 @@ using MediatR;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using MyBillBoard.Api.Extensions;
-using MyBillBoard.Application.Common.Interfaces;
-using MyBillBoard.Application.Services;
 using MyBillBoard.Infrastructure.Persistence;
-using MyBillBoard.Infrastructure.Repositories;
 using MyBillBoard.Application.Common.Behaviors;
 using MyBillBoard.Application.Features.Categories.Validators;
 
@@ -40,9 +37,6 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddScoped<IAnnouncementsService, AnnouncementsService>();
-builder.Services.AddScoped<IAnnouncementsRepository, AnnouncementsRepository>();
 
 var app = builder.Build();
 
