@@ -1,10 +1,12 @@
-using MediatR;
 using FluentValidation;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MyBillBoard.Api.Extensions;
-using MyBillBoard.Infrastructure.Persistence;
 using MyBillBoard.Application.Common.Behaviors;
+using MyBillBoard.Application.Common.Mappings;
+using MyBillBoard.Application.Features.Categories;
 using MyBillBoard.Application.Features.Categories.Validators;
+using MyBillBoard.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +22,7 @@ builder.Services.AddControllers();
 // MediatR
 // ------------------------
 builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssembly(typeof(MyBillBoard.Application.Features.Categories.CreateCategoryCommand).Assembly));
+    cfg.RegisterServicesFromAssembly(typeof(CreateCategoryCommand).Assembly));
 
 // ------------------------
 // FluentValidation
@@ -31,6 +33,9 @@ builder.Services.AddValidatorsFromAssembly(typeof(CreateCategoryValidator).Assem
 // Pipeline Behavior
 // ------------------------
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+// AutoMapper
+builder.Services.AddAutoMapper(cfg => { }, typeof(MappingAssemblyMarker).Assembly);
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

@@ -7,26 +7,19 @@ namespace MyBillBoard.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CategoriesController : ControllerBase
+    public class CategoriesController(IMediator mediator) : ControllerBase
     {
-        private readonly IMediator _mediator;
-
-        public CategoriesController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
         [HttpGet]
         public async Task<ActionResult<List<CategoryDto>>> GetAll()
         {
-            var categories = await _mediator.Send(new GetCategoriesQuery());
+            var categories = await mediator.Send(new GetCategoriesQuery());
             return Ok(categories);
         }
 
         [HttpPost]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateCategoryCommand command)
         {
-            var categoryId = await _mediator.Send(command);
+            var categoryId = await mediator.Send(command);
             return Ok(categoryId);
         }
 
@@ -38,14 +31,14 @@ namespace MyBillBoard.Api.Controllers
                 return BadRequest("ID mismatch"); 
             }
 
-            var categoryId = await _mediator.Send(command);
+            var categoryId = await mediator.Send(command);
             return Ok(categoryId);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<Guid>> Delete(Guid id)
         {
-            var deletedId = await _mediator.Send(new DeleteCategoryCommand(id));
+            var deletedId = await mediator.Send(new DeleteCategoryCommand(id));
             return Ok(deletedId);
         }
     }
