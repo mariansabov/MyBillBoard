@@ -14,6 +14,7 @@ namespace MyBillBoard.Application.Features.Announcements.Validators
                 .WithMessage("Title is required.")
                 .MaximumLength(200)
                 .WithMessage("Title cannot exceed 200 characters.");
+
             RuleFor(a => a.Description)
                 .NotEmpty()
                 .WithMessage("Description is required.")
