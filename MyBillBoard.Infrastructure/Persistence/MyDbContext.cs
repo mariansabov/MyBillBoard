@@ -16,9 +16,7 @@ namespace MyBillBoard.Infrastructure.Persistence
         {
             var configurationAssembly = typeof(AnnouncementConfiguration).Assembly;
 
-            modelBuilder.ApplyConfigurationsFromAssembly(
-                configurationAssembly
-            );
+            modelBuilder.ApplyConfigurationsFromAssembly(configurationAssembly);
 
             base.OnModelCreating(modelBuilder);
         }
